@@ -1,24 +1,22 @@
 package org.teamlaika.laikaspetpark.models;
 
-public class Breed extends AbstractEntity {
+public class Breed {
 
-    private int breedId;
+    private int id;
 
     private String name;
 
     public Breed(int breedId, String name) {
-        this.breedId = breedId;
+        this.id = breedId;
         this.name = name;
     }
 
-    public Breed() {}
-
-    public int getBreedId() {
-        return breedId;
+    public int getId() {
+        return id;
     }
 
-    public void setBreedId(int breedId) {
-        this.breedId = breedId;
+    public void setId(int breedId) {
+        this.id = breedId;
     }
 
     public String getName() {

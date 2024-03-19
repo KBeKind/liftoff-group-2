@@ -9,16 +9,17 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/breeds")
-public class BreedController {
+public class DogApiController {
 
-    private final BreedService breedService;
+    private final DogApiService dogApiService;
 
-    public BreedController(BreedService breedService) {
-        this.breedService = breedService;
+    public DogApiController(DogApiService dogApiService) {
+        this.dogApiService = dogApiService;
     }
 
     @GetMapping("")
     public List<Breed> findAll() {
-        return breedService.findAll();
+        return dogApiService.findAll();
     }
+
 }

@@ -8,11 +8,11 @@ import org.teamlaika.laikaspetpark.models.Breed;
 import java.util.List;
 
 @Service
-public class BreedService {
+public class DogApiService {
 
     private final RestClient restClient;
 
-    public BreedService() {
+    public DogApiService() {
         restClient = RestClient.builder()
                 .baseUrl("https://api.thedogapi.com")
                 .build();
