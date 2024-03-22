@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Page</title>
+    <style>
+        /* Basic CSS for the navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: blue;
+            margin-left: 20px;
+        }
+        .welcome {
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="navbar-brand">Pet Connect</div>
+    <div>
+        <a class="nav-link" href="../index.html">Home</a> <!-- Link to home page -->
+        <a class="nav-link" href="list.html">My Pets</a> <!-- Link to list pets page -->
+    </div>
+</div>
+
+<div class="welcome">
+    <h2>Welcome, <span th:text="${user}">User</span>! What services are you requiring today?</h2>
+    <form action="#" method="get">
+        <label for="service">Search Service:</label>
+        <input type="text" id="service" name="service" placeholder="Enter service...">
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+</body>
+</html>

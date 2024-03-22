@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add Service or Modify Services</title>
+</head>
+<body>
+
+<h2>Add or Modify Services</h2>
+
+<form>
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}">
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" th:field="*{email}">
+    </div>
+    <div>
+        <label for="skills">Skills:</label>
+        <br>
+        <input type="checkbox" id="grooming" name="skills" value="grooming">
+        <label for="grooming">Grooming</label>
+        <br>
+        <input type="checkbox" id="training" name="skills" value="training">
+        <label for="training">Training</label>
+        <br>
+        <input type="checkbox" id="pet_sitting" name="skills" value="pet_sitting">
+        <label for="pet_sitting">Pet Sitting</label>
+        <br>
+        <input type="checkbox" id="dog_walking" name="skills" value="dog_walking">
+        <label for="dog_walking">Dog Walking</label>
+        <br>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>
