@@ -12,11 +12,13 @@
         <thead>
         <tr>
             <th>Name</th>
+            <th>Species</th>
             <th>Breed</th>
         </tr>
         </thead>
         <tr th:each="pet : ${pets}">
             <td th:text="${pet.name}"></td>
+            <td th:text="${pet.species}"></td>
             <td th:text="${pet.breed}"></td>
         </tr>
     </table>

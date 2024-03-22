@@ -7,6 +7,7 @@ import org.teamlaika.laikaspetpark.models.Pet;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("pet")
@@ -25,16 +26,43 @@ public class PetController {
         return "index";
     }
 
+    @GetMapping("precreate")
+    public String displayPreCreatePetForm() {
+        return "precreate";
+    }
+
+    @PostMapping("precreate")
+    public String processPreCreatePetForm(@RequestParam String species) {
+        if (species.equals("dog")) {
+            return "redirect:create-dog";
+        } else {
+            return "redirect:create-cat";
+        }
+    }
+
     @GetMapping("create-dog")
-    public String displayCreatePetForm(Model model) {
-        model.addAttribute("dogBreeds", apiService.findAllDogs());
-        return "create";
+    public String displayCreateDogForm(Model model) {
+        model.addAttribute("breeds", apiService.findAllDogs());
+        return "create-dog";
     }
 
     @PostMapping("create-dog")
-    public String processCreatePetForm(@RequestParam String name, String breed) {
-        String species = "dog";
+    public String processCreateDogForm(@RequestParam String name, String breed) {
+        String species = "Dog";
         pets.add(new Pet(name, species, breed));
-        return "redirect:create";
+        return "redirect:precreate";
+    }
+
+    @GetMapping("create-cat")
+    public String displayCreateCatForm(Model model) {
+        model.addAttribute("breeds", apiService.findAllCats());
+        return "create-cat";
+    }
+
+    @PostMapping("create-cat")
+    public String processCreateCatForm(@RequestParam String name, String breed) {
+        String species = "Cat";
+        pets.add(new Pet(name, species, breed));
+        return "redirect:precreate";
     }
 }

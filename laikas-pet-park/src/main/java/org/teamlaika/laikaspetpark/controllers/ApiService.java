@@ -33,7 +33,7 @@ public class ApiService {
 
     public List<CatApi> findAllCats() {
         return catRestClient.get()
-                .uri("/breeds")
+                .uri("/v1/breeds")
                 .retrieve()
                 .body(new ParameterizedTypeReference<List<CatApi>>() {});
     }

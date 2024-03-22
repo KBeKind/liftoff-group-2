@@ -1,4 +1,4 @@
 package org.teamlaika.laikaspetpark.models;
 
-public record CatApi(int id, String name) {
+public record CatApi(String id, String name) {
 }
