@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add Pet</title>
+</head>
+<body>
+
+<h2>Add or Modify Pet</h2>
+
+<form action="#" th:action="@{/pet/add}" th:object="${pet}" method="post">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}">
+    </div>
+    <div>
+        <label for="age">Age:</label>
+        <!-- Might use datepicker or will just do in react -->
+        <input type="text" id="age" th:field="*{age}" data-datepicker>
+    </div>
+    <div>
+        <label for="species">Species:</label>
+        <select id="species" name="species">
+            <option value="dog">Dog</option>
+            <option value="cat">Cat</option>
+        </select>
+    </div>
+    <div>
+        <label for="breed">Breed:</label>
+        <select id="breed" name="breed">
+            <!-- Populated dropdown dynamically using an API -->
+        </select>
+    </div>
+    <div>
+        <label for="notes">Notes:</label>
+        <textarea id="notes" name="notes" rows="4" cols="50"></textarea>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    <!-- May initialize datepicker here -->
+</script>
+
+</body>
+</html>
