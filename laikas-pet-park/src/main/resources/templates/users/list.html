@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Pet List</title>
+</head>
+<body>
+    <div class="pet-list">
+        <h2>My Pets</h2>
+        <a class="nav-link" href="../index.html">Go Back</a> <!-- Link to home page -->
+
+        <!-- Search bar? -->
+        <form action="#" method="get">
+            <label for="petSearch">Search Your Pets:</label>
+            <input type="text" id="petSearch" name="petSearch" placeholder="Enter pet name...">
+            <button type="submit">Search</button>
+        </form>
+
+        <!-- List of pets -->
+        <ul>
+            <li th:each="pet : ${pets}" class="pet-item">
+                <span th:text="${pet.name}"></span> - <!-- Pet name -->
+                <span th:text="${pet.age}"></span> years old, <!-- Pet age -->
+                <span th:text="${pet.species}"></span>, <!-- Pet species -->
+                <span th:text="${pet.breed}"></span> <!-- Pet breed -->
+                <a class="edit-button" th:href="@{'edit.html?petId=' + ${pet.id}}">Edit Pet</a> <!-- Edit pet link -->
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
