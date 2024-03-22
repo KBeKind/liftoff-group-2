@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Provider Welcome Page</title>
+    <style> <!-- WILL BE MOVED LATER -->
+        /* Basic CSS for the navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: blue;
+            margin-left: 20px;
+        }
+        .welcome {
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="navbar-brand">Pet Connect</div>
+    <div>
+        <a class="nav-link" href="../index.html">Home</a> <!-- Link back to home page -->
+        <a class="nav-link" href="add.html">Add Pet</a> <!-- Link to add pet page -->
+    </div>
+</div>
+
+<div class="welcome">
+    <h2>Welcome Provider (<span th:text="${providerName}">Default</span>)</h2>
+</div>
+
+</body>
+</html>
