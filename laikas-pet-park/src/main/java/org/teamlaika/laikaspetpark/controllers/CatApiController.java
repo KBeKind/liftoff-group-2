@@ -9,11 +9,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/cat-breeds")
-public class CatApiController {
+public class CatAPIController {
 
     private final ApiService apiService;
 
-    public CatApiController(ApiService apiService) {
+    public CatAPIController(ApiService apiService) {
         this.apiService = apiService;
     }
 

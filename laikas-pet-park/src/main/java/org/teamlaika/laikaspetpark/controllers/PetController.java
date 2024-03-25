@@ -23,7 +23,7 @@ public class PetController {
     @GetMapping
     public String displayAllPets(Model model) {
         model.addAttribute("pets", pets);
-        return "index";
+        return "display";
     }
 
     @GetMapping("precreate")
