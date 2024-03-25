@@ -17,7 +17,7 @@ public class DogApiController {
         this.apiService = apiService;
     }
 
-    @GetMapping()
+    @GetMapping("")
     public List<DogApi> findAllDogs() {
         return apiService.findAllDogs();
     }

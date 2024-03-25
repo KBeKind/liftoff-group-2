@@ -17,7 +17,7 @@ public class CatApiController {
         this.apiService = apiService;
     }
 
-    @GetMapping()
+    @GetMapping("")
     public List<CatApi> findAllCats() {
         return apiService.findAllCats();
     }
