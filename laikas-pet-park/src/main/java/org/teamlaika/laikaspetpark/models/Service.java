@@ -1,5 +1,8 @@
 package org.teamlaika.laikaspetpark.models;
 
-public class Service {
+import jakarta.persistence.Entity;
+
+@Entity
+public class Service extends AbstractEntity{
 
 }

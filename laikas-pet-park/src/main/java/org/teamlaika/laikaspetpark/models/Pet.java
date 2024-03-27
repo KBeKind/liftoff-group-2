@@ -1,4 +1,7 @@
 package org.teamlaika.laikaspetpark.models;
 
-public class Pet {
+import jakarta.persistence.Entity;
+
+@Entity
+public class Pet extends AbstractEntity {
 }

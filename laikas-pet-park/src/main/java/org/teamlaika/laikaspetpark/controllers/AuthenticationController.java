@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.teamlaika.laikaspetpark.models.User;
-import org.teamlaika.laikaspetpark.models.data.OwnerRepository;
-import org.teamlaika.laikaspetpark.models.data.ProviderRepository;
+import org.teamlaika.laikaspetpark.models.data.UserRepository;
 import org.teamlaika.laikaspetpark.models.dto.LoginFormDTO;
 import org.teamlaika.laikaspetpark.models.dto.RegisterFormDTO;
 
@@ -20,13 +19,12 @@ import java.util.Optional;
 
 @Controller
 public class AuthenticationController {
-    @Autowired
-    OwnerRepository ownerRepository;
 
     @Autowired
-    ProviderRepository providerRepository;
+    UserRepository userRepository;
 
-    private static final String userSessionKey = "user";
+    //Session-Handling Utilities
+    private static final String userSessionKey = "username";
 
     public User getUserFromSession(HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
@@ -34,7 +32,7 @@ public class AuthenticationController {
             return null;
         }
 
-        Optional<User> user = OwnerRepository.findById(userId);
+        Optional<User> user = userRepository.findById(userId);
 
         if (user.isEmpty()) {
             return null;
@@ -47,13 +45,13 @@ public class AuthenticationController {
         session.setAttribute(userSessionKey, user.getId());
     }
 
+    //Registering New Users
     @GetMapping("/register")
     public String displayRegistrationForm(Model model) {
         model.addAttribute(new RegisterFormDTO());
         model.addAttribute("title", "Register");
         return "register";
     }
-
     @PostMapping("/register")
     public String processRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO,
                                           Errors errors, HttpServletRequest request,
@@ -64,7 +62,7 @@ public class AuthenticationController {
             return "register";
         }
 
-        User existingUser = OwnerRepository.findByUsername(registerFormDTO.getUsername());
+        User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
 
         if (existingUser != null) {
             errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
@@ -80,12 +78,14 @@ public class AuthenticationController {
             return "register";
         }
 
-        User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword());
+        User newUser = new User(registerFormDTO.getName(), registerFormDTO.getUsername(), registerFormDTO.getPassword(), registerFormDTO.getEmail());
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
 
         return "redirect:";
     }
+
+    //Handling User Login
     @GetMapping("/login")
     public String displayLoginForm(Model model) {
         model.addAttribute(new LoginFormDTO());
@@ -102,6 +102,8 @@ public class AuthenticationController {
             return "login";
         }
 
+        // TODO: Check user accountType. Depending on type, check that repo.
+
         User theUser = userRepository.findByUsername(loginFormDTO.getUsername());
 
         if (theUser == null) {
@@ -117,7 +119,7 @@ public class AuthenticationController {
             model.addAttribute("title", "Log In");
             return "login";
         }
-
+    // TODO be sure to save user name and profile type to be saved in the session.
         setUserInSession(request.getSession(), theUser);
 
         return "redirect:";
