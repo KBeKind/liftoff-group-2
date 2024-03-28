@@ -1,28 +1,33 @@
-package org.teamlaika.laikaspetpark;
+package org.teamlaika.laikaspetpark.models;
+
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Objects;
 
 public class Pet {
+    @Id
+    @GeneratedValue
     private int id;
-    private static int nextId = 1;
+    @NotNull
     private String name;
-    private String owner;
+    @ManyToOne
+    private Owner owner;
     private String species;
     private String breed;
     private String description;
 
-    public Pet(){
-        id = nextId;
-        nextId++;
-    }
 
-    public Pet(String aname, String aspecies, String abreed, String adescription, Account powner){
-        this();
+
+    public Pet(String aname, String aspecies, String abreed, String adescription, Owner powner){
+        //this();
         this.name = aname;
         this.species = aspecies;
         this.breed = abreed;
         this.description = adescription;
-        this.owner = powner.getDisplayName();
+        this.owner = powner;
     }
 
     public int getId() {
@@ -37,11 +42,11 @@ public class Pet {
         this.name = name;
     }
 
-    public String getOwner() {
+    public Owner getOwner() {
         return owner;
     }
 
-    public void setOwner(String owner) {
+    public void setOwner(Owner owner) {
         this.owner = owner;
     }
 
